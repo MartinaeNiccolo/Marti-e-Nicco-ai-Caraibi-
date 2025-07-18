@@ -1,0 +1,271 @@
+<!DOCTYPE html>
+<html lang="it">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Marti e Nicco ai Caraibi 🌊🥥</title>
+  <style>
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+        Ubuntu, Cantarell, "Open Sans", "Helvetica Neue", sans-serif;
+      margin: 0;
+      background: #f7f9fc;
+      color: #222;
+      max-width: 900px;
+      margin-left: auto;
+      margin-right: auto;
+      padding: 20px;
+    }
+    h1 {
+      text-align: center;
+      margin-bottom: 30px;
+      font-weight: 700;
+    }
+    .experience {
+      background: white;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      margin-bottom: 25px;
+      display: flex;
+      gap: 20px;
+      overflow: hidden;
+    }
+    .experience img {
+      width: 200px;
+      object-fit: cover;
+      cursor: pointer;
+      border-radius: 10px 0 0 10px;
+      flex-shrink: 0;
+    }
+    .details {
+      padding: 15px 20px;
+      flex-grow: 1;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+    .details h2 {
+      margin-top: 0;
+      margin-bottom: 8px;
+      font-weight: 600;
+    }
+    .details p {
+      margin-top: 0;
+      margin-bottom: 15px;
+      color: #555;
+    }
+    .buttons {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    .buttons button {
+      background: #0070f3;
+      border: none;
+      color: white;
+      padding: 8px 14px;
+      border-radius: 6px;
+      cursor: pointer;
+      font-weight: 600;
+      transition: background-color 0.25s ease;
+    }
+    .buttons button:hover {
+      background: #005bb5;
+    }
+    form {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 2px 8px rgb(0 0 0 / 0.1);
+      margin-top: 40px;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+    label {
+      font-weight: 600;
+      margin-bottom: 6px;
+    }
+    input[type="text"],
+    input[type="email"],
+    textarea {
+      padding: 10px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      width: 100%;
+      box-sizing: border-box;
+      resize: vertical;
+    }
+    textarea {
+      min-height: 80px;
+    }
+    button[type="submit"] {
+      background: #00a86b;
+      color: white;
+      font-weight: 700;
+      padding: 12px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      font-size: 1.1rem;
+      transition: background-color 0.25s ease;
+      width: fit-content;
+      align-self: flex-start;
+    }
+    button[type="submit"]:hover {
+      background: #057a4e;
+    }
+    .thankyou-message {
+      color: #0070f3;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+    @media (max-width: 600px) {
+      .experience {
+        flex-direction: column;
+      }
+      .experience img {
+        width: 100%;
+        border-radius: 10px 10px 0 0;
+      }
+    }
+  </style>
+</head>
+<body>
+  <h1>Marti e Nicco ai Caraibi 🌊🥥</h1>
+
+  <div id="experiences-container"></div>
+
+  <form id="contact-form" action="https://formspree.io/f/xeozoljd" method="POST">
+    <h2>Lascia un messaggio per noi</h2>
+    <label for="name">Nome</label>
+    <input type="text" name="name" id="name" placeholder="Il tuo nome" required />
+
+    <label for="email">Email</label>
+    <input type="email" name="_replyto" id="email" placeholder="La tua email" required />
+
+    <label for="message">Messaggio</label>
+    <textarea name="message" id="message" placeholder="Scrivi qui il tuo messaggio"></textarea>
+
+    <button type="submit">Invia messaggio</button>
+    <p class="thankyou-message" style="display:none;">Grazie per il tuo messaggio! 💌</p>
+  </form>
+
+  <script>
+    const experiences = [
+      { 
+        name: "Degustazione di rum",
+        desc: "Assaggia i migliori rum locali con una guida esperta.",
+        img: "https://source.unsplash.com/800x600/?rum,caribbean",
+        paypalBase: "https://www.paypal.com/paypalme/martinaeniccolo/"
+      },
+      { 
+        name: "Cena tipica caraibica",
+        desc: "Goditi una cena tradizionale con piatti autentici.",
+        img: "https://source.unsplash.com/800x600/?caribbean,dinner",
+        paypalBase: "https://www.paypal.com/paypalme/martinaeniccolo/"
+      },
+      { 
+        name: "Escursione alle cascate",
+        desc: "Visita panoramica alle cascate più belle dell'isola.",
+        img: "https://source.unsplash.com/800x600/?waterfall,caribbean",
+        paypalBase: "https://www.paypal.com/paypalme/martinaeniccolo/"
+      },
+      { 
+        name: "Escursione in barca a vela",
+        desc: "Giornata in barca a vela con paesaggi mozzafiato.",
+        img: "https://source.unsplash.com/800x600/?sailboat,caribbean",
+        paypalBase: "https://www.paypal.com/paypalme/martinaeniccolo/"
+      },
+      { 
+        name: "Visita al parco naturale",
+        desc: "Scopri la flora e fauna locali con una guida esperta.",
+        img: "https://source.unsplash.com/800x600/?nature,caribbean",
+        paypalBase: "https://www.paypal.com/paypalme/martinaeniccolo/"
+      }
+      // aggiungi qui tutte le altre esperienze (fino a 30)
+    ];
+
+    const container = document.getElementById('experiences-container');
+
+    function createPaypalButtons(baseUrl) {
+      const amounts = [50, 100, 150, 200, 300, 500, 1000];
+      const buttonsDiv = document.createElement('div');
+      buttonsDiv.className = 'buttons';
+
+      amounts.forEach(amount => {
+        const btn = document.createElement('button');
+        btn.textContent = amount + " €";
+        btn.type = "button";
+        btn.addEventListener('click', () => {
+          const url = `${baseUrl}${amount}?currency=EUR`;
+          window.open(url, '_blank');
+        });
+        buttonsDiv.appendChild(btn);
+      });
+      return buttonsDiv;
+    }
+
+    experiences.forEach(exp => {
+      const card = document.createElement('article');
+      card.className = 'experience';
+
+      const img = document.createElement('img');
+      img.src = exp.img;
+      img.alt = exp.name;
+      img.title = exp.name;
+      img.addEventListener('click', () => {
+        alert(`${exp.name}\n\n${exp.desc}`);
+      });
+
+      const details = document.createElement('div');
+      details.className = 'details';
+
+      const h2 = document.createElement('h2');
+      h2.textContent = exp.name;
+
+      const p = document.createElement('p');
+      p.textContent = exp.desc;
+
+      const buttons = createPaypalButtons(exp.paypalBase);
+
+      details.appendChild(h2);
+      details.appendChild(p);
+      details.appendChild(buttons);
+
+      card.appendChild(img);
+      card.appendChild(details);
+
+      container.appendChild(card);
+    });
+
+    // Gestione messaggio di ringraziamento dopo invio form
+    const form = document.getElementById('contact-form');
+    const thankYouMsg = document.querySelector('.thankyou-message');
+
+    form.addEventListener('submit', async (e) => {
+      e.preventDefault();
+      const formData = new FormData(form);
+
+      try {
+        const response = await fetch(form.action, {
+          method: form.method,
+          body: formData,
+          headers: {
+            'Accept': 'application/json'
+          }
+        });
+        if (response.ok) {
+          thankYouMsg.style.display = 'block';
+          form.reset();
+        } else {
+          alert('Oops! C’è stato un problema con l’invio, riprova più tardi.');
+        }
+      } catch (error) {
+        alert('Errore di rete, controlla la connessione.');
+      }
+    });
+  </script>
+</body>
+</html>
